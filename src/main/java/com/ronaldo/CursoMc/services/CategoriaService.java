@@ -14,7 +14,7 @@ import java.util.Optional;
 public class CategoriaService {
 	
 @Autowired(required=false)
-public CategoriaRepository repo;
+private CategoriaRepository repo;
 	
 @Autowired(required=false)
 public Categoria find(Integer id) {
