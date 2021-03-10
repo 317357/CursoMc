@@ -10,6 +10,7 @@ import com.ronaldo.CursoMc.repositories.CategoriaRepository;
 import com.ronaldo.CursoMc.services.exceptions.DataIntegrityException;
 import com.ronaldo.CursoMc.services.exceptions.ObjectNotFoundException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +44,9 @@ public void delete(Integer id) {
 	   throw new DataIntegrityException("Não é possivel excluir uma Categoria que possui Produtos");
    }
 		
-	}
+ }
+public List<Categoria> findAll(){
+	return repo.findAll();
+}
+
 }
