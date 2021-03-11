@@ -6,10 +6,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
 import java.lang.Integer;
 import com.ronaldo.CursoMc.domain.Categoria;
+import com.ronaldo.CursoMc.dto.CategoriaDTO;
 import com.ronaldo.CursoMc.repositories.CategoriaRepository;
 import com.ronaldo.CursoMc.services.exceptions.DataIntegrityException;
 import com.ronaldo.CursoMc.services.exceptions.ObjectNotFoundException;
@@ -59,5 +59,8 @@ public Page<Categoria> findPage(Integer page,Integer linesPerPage,String ordeBy,
 	
  
 	
+}
+public Categoria fromDTO(CategoriaDTO objDto) {
+	return new Categoria(objDto.getId(), objDto.getNome());
 }
 }
