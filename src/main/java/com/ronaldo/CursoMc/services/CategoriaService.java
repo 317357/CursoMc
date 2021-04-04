@@ -1,21 +1,21 @@
 package com.ronaldo.CursoMc.services;
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import java.lang.Integer;
+
 import com.ronaldo.CursoMc.domain.Categoria;
 import com.ronaldo.CursoMc.dto.CategoriaDTO;
 import com.ronaldo.CursoMc.repositories.CategoriaRepository;
 import com.ronaldo.CursoMc.services.exceptions.DataIntegrityException;
 import com.ronaldo.CursoMc.services.exceptions.ObjectNotFoundException;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -35,8 +35,9 @@ public Categoria insert(Categoria obj) {
 	return repo.save(obj);
 }
 public Categoria update (Categoria obj) {
-	find(obj.getId());
-	return repo.save(obj);
+	Categoria newObj=find(obj.getId());
+	updateData(newObj,obj);
+	return repo.save(newObj);
 }
 public void delete(Integer id) {
 	find(id);
@@ -62,5 +63,9 @@ public Page<Categoria> findPage(Integer page,Integer linesPerPage,String ordeBy,
 }
 public Categoria fromDTO(CategoriaDTO objDto) {
 	return new Categoria(objDto.getId(), objDto.getNome());
+}
+private void updateData ( Categoria newObj,Categoria obj) {
+	newObj.setNome(obj.getNome());
+	
 }
 }
