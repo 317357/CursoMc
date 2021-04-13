@@ -3,6 +3,7 @@ package com.ronaldo.CursoMc.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.lang.Integer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public class ProdutoService {
 @Autowired(required=false)
 private ProdutoRepository repo;
 
-@Autowired
+@Autowired(required=false)
 private CategoriaRepository categoriaRepository;
 	
 @Autowired(required=false)
