@@ -14,6 +14,7 @@ import com.ronaldo.CursoMc.domain.enums.EstadoPagamento;
 import com.ronaldo.CursoMc.repositories.ItemPedidoRepository;
 import com.ronaldo.CursoMc.repositories.PagamentoRepository;
 import com.ronaldo.CursoMc.repositories.PedidoRepository;
+import com.ronaldo.CursoMc.repositories.ProdutoRepository;
 import com.ronaldo.CursoMc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -30,7 +31,8 @@ public class PedidoService {
 
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
-
+	
+	
 	@Autowired
 	private ProdutoService produtoService;
 
@@ -39,7 +41,7 @@ public class PedidoService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
 	}
-    @Transactional
+    @Transactional(readOnly = true)
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstante(new Date());
